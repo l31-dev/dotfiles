@@ -1,5 +1,10 @@
-require("slydragonn.settings")
-require("slydragonn.maps")
-require("slydragonn.plugins")
+if vim.loader then
+	vim.loader.enable()
+end
 
-vim.cmd("colorscheme rose-pine")
+_G.dd = function(...)
+	require("util.debug").dump(...)
+end
+vim.print = _G.dd
+
+require("config.lazy")

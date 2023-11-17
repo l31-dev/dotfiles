@@ -1,5 +1,6 @@
 if status is-interactive
 	fish_config theme choose "Rosé Pine"
+  set EDITOR "nvim"
 end
 
 alias ls="eza --icons"
