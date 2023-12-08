@@ -9,6 +9,7 @@
   imports = [
     ./programs/git.nix
     ./programs/zsh.nix
+    ./programs/nvim.nix
   ];
 
   home.packages = [
