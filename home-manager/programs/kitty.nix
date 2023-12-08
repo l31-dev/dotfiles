@@ -7,7 +7,7 @@
       copy_on_select = "clipboard";
       background_opacity = "0.95";
       background_blur = 1;
-      font_family = "FiraCode";
+      font_family = "DroidSansMono";
 	    window_margin_width = 12;
 	    window_margin_height = 12;
 
