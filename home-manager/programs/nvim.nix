@@ -11,6 +11,7 @@
     extraPackages = with pkgs; [
       fzf
       rnix-lsp
+      tsserver
     ];
 
     plugins = with pkgs.vimPlugins; [
