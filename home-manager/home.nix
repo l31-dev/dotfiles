@@ -1,30 +1,17 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
 
+{
   home.username = "trail";
   home.homeDirectory = "/home/trail";
 
-  home.stateVersion = "23.11";
-
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   imports = [
-    ./programs/kitty/kitty.nix
-    ./programs/zsh/zsh.nix
-    ./programs/nvim.nix
-    ./programs/git/git.nix
+    ./programs/git.nix
   ];
 
-  home.sessionVariables.TERMINAL = "kitty";
-
-	home.packages = with pkgs; [
-		# add packages for my profile here
-		simplescreenrecorder
-    notion-app-enhanced
-    nodejs
+  home.packages = [
   ];
 
   programs.home-manager.enable = true;
-
 }
