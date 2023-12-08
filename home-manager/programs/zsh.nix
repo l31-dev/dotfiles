@@ -1,6 +1,7 @@
 {...}: {
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     shellAliases = {
       update = "sudo nixos rebuild switch";
       hupdate = "home-manager switch && git add ~/.dotfiles/home-manager && git commit -m '' && git push";
