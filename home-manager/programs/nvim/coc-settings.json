@@ -5,10 +5,6 @@
       "filetypes": [
         "nix"
       ]
-    },
-    "tsserver": {
-      "command": "tsserver",
-      "filetypes": ["typescript", "typescriptreact"]
     }
   }
 }
