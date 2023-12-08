@@ -12,7 +12,10 @@
     ./programs/nvim.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   home.packages = [
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   programs.home-manager.enable = true;

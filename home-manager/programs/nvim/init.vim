@@ -14,3 +14,6 @@ let g:telescope_fzf_options = {
 " Coc
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" CHADtree
+nnoremap <silent><C-n> :CHADopen<CR>
