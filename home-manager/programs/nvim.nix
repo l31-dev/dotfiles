@@ -17,6 +17,7 @@
       chadtree
       coc-nvim
       telescope-nvim
+      delimitMate
     ];
 
     extraConfig = lib.fileContents ./nvim/init.vim;

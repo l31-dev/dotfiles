@@ -17,3 +17,9 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " CHADtree
 nnoremap <silent><C-n> :CHADopen<CR>
+
+" Set tab width to 2 spaces and use spaces instead of tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
