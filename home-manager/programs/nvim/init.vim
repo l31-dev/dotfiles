@@ -1,6 +1,8 @@
 let mapleader = "\<Space>"
 map <Space> <Nop>
 
+inoremap <expr> <C-e> "$a"
+
 " Telescope
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
@@ -14,6 +16,7 @@ let g:telescope_fzf_options = {
 " Coc
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-y>\<C-\>\<C-o>:normal! \<C-C>\<CR>" : "\<C-j>"
 
 " CHADtree
 nnoremap <silent><C-n> :CHADopen<CR>
