@@ -6,6 +6,7 @@
       catppuccin.catppuccin-vsc-icons
       catppuccin.catppuccin-vsc
       jnoortheen.nix-ide
+      arrterian.nix-env-selector
     ];
     userSettings = {
       "workbench.iconTheme" = "catppuccin-mocha";
