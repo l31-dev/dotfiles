@@ -19,6 +19,10 @@
     ./programs/nvim.nix
     ./programs/kitty.nix
   ];
-  
+ 
+  home.sessionVariables = {
+    DSHELL="${pkgs.zsh}/bin/zsh";
+  };
+
   programs.home-manager.enable = true;
 }

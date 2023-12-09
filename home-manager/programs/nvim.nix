@@ -17,6 +17,7 @@
       chadtree
       coc-nvim
       coc-tsserver
+      coc-go
       telescope-nvim
       delimitMate
       rose-pine
