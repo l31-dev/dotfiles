@@ -1,3 +1,5 @@
+colorscheme rose-pine
+
 let mapleader = "\<Space>"
 map <Space> <Nop>
 

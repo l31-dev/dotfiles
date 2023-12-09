@@ -19,6 +19,7 @@
       coc-tsserver
       telescope-nvim
       delimitMate
+      rose-pine
     ];
 
     extraConfig = lib.fileContents ./nvim/init.vim;

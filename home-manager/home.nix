@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+    ocs-url
   ];
 
   imports = [
