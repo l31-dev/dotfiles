@@ -18,6 +18,7 @@
     ./programs/zsh.nix
     ./programs/nvim.nix
     ./programs/kitty.nix
+    ./programs/vscode.nix
   ];
  
   home.sessionVariables = {
