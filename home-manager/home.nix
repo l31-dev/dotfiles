@@ -7,10 +7,11 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
   
   fonts.fontconfig.enable = true;
-
+  
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "DroidSansMono" ]; })
-    ocs-url
+    ocs-url steam
   ];
 
   imports = [
