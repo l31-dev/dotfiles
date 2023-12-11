@@ -51,8 +51,6 @@
 
   services.xserver.enable = true;
 
-  programs.hyprland.enable = true;
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -98,7 +96,16 @@
     man-pages
     man-pages-posix
     xorg.libxcvt
+
+    eww
+    dunst
+    libnotify
+    swww
+    rofi-wayland
   ];
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
