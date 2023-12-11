@@ -12,6 +12,7 @@
     ./programs/neovim
     ./programs/git.nix
     ./programs/zsh.nix
+    ./programs/firefox.nix
   ];
 
   home.packages = with pkgs; [

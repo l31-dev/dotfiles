@@ -1,7 +1,8 @@
 { pkgs, inputs, ... }: {
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -9,12 +10,12 @@
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
-  
+
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
     ];
@@ -26,7 +27,7 @@
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Paris";
@@ -72,12 +73,15 @@
     pulse.enable = true;
   };
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   users.users.trail = {
     isNormalUser = true;
     description = "trail";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-  
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -92,7 +96,7 @@
     man-pages
     man-pages-posix
   ];
- 
+
   system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
