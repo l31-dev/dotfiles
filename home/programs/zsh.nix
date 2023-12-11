@@ -1,5 +1,6 @@
 { ... }: {
   programs.zsh = {
+    enable = true;
     enableAutosuggestions = true;
 
     shellAliases = {
@@ -9,7 +10,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "nodejs" ];
+      plugins = [ "git" "node" ];
       theme = "robbyrussell";
     };
   };

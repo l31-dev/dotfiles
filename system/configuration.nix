@@ -7,6 +7,9 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "trail" ];
+
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
@@ -48,6 +51,8 @@
 
   services.xserver.enable = true;
 
+  programs.hyprland.enable = true;
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -73,9 +78,6 @@
     pulse.enable = true;
   };
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-
   users.users.trail = {
     isNormalUser = true;
     description = "trail";
@@ -95,6 +97,7 @@
     curl
     man-pages
     man-pages-posix
+    xorg.libxcvt
   ];
 
   system.stateVersion = "23.11"; # Did you read the comment?

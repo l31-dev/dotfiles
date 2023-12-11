@@ -9,8 +9,15 @@
     extraConfig = lib.fileContents ./init.vim;
 
     extraPackages = with pkgs; [
-        nil
-        nixpkgs-fmt
+      nil
+      nixpkgs-fmt
+    ];
+
+    plugins = with pkgs.vimPlugins; [
+      catppuccin-nvim
+      nerdtree
+      telescope-nvim
+      vim-devicons
     ];
 
     coc = {
@@ -19,19 +26,19 @@
         "suggest.enablePreview" = true;
         "suggest.enablePreselect" = true;
         "coc.preferences.formatOnType" = true;
-        "coc.preferences.formatOnSaveFiletypes" = ["nix"];
+        "coc.preferences.formatOnSaveFiletypes" = [ "nix" ];
         "languageserver" = {
-            "nix" = {
-                "command" = "nil";
-                "filetypes" = ["nix"];
-                "settings" = {
-                    "nil" = {
-                        "formatting" = {
-                            "command" = ["nixpkgs-fmt"];
-                        };
-                    };
+          "nix" = {
+            "command" = "nil";
+            "filetypes" = [ "nix" ];
+            "settings" = {
+              "nil" = {
+                "formatting" = {
+                  "command" = [ "nixpkgs-fmt" ];
                 };
+              };
             };
+          };
         };
       };
     };
