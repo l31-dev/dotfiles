@@ -11,6 +11,7 @@
     extraPackages = with pkgs; [
       nil
       nixpkgs-fmt
+      gopls
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -18,6 +19,8 @@
       nerdtree
       telescope-nvim
       vim-devicons
+      delimitMate
+      coc-emmet
     ];
 
     coc = {
@@ -25,9 +28,12 @@
       settings = {
         "suggest.enablePreview" = true;
         "suggest.enablePreselect" = true;
+
         "coc.preferences.formatOnType" = true;
         "coc.preferences.formatOnSaveFiletypes" = [ "nix" ];
+
         "languageserver" = {
+
           "nix" = {
             "command" = "nil";
             "filetypes" = [ "nix" ];
@@ -39,6 +45,14 @@
               };
             };
           };
+
+          "go" = {
+            "command" = "gopls";
+            "rootPatterns" = [ "go.mod" ];
+            "trace.server" = "verbose";
+            "filetypes" = [ "go" ];
+          };
+
         };
       };
     };

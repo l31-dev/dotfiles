@@ -15,15 +15,21 @@
     ./programs/firefox.nix
     ./programs/theming.nix
     ./programs/kitty.nix
+    ./programs/vscode.nix
   ];
 
   home.packages = with pkgs; [
     discord
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    kitty
+    anydesk
+    steam
   ];
 
   home.file = { };
+
+  home.sessionVariables = {
+    SHELL = "${pkgs.zsh}";
+  };
 
   programs.home-manager.enable = true;
 }

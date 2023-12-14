@@ -14,6 +14,10 @@
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
 
+  # enable docker
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
+
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
@@ -90,22 +94,16 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   environment.systemPackages = with pkgs; [
     curl
     man-pages
     man-pages-posix
     xorg.libxcvt
-
-    eww
-    dunst
-    libnotify
-    swww
-    rofi-wayland
   ];
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
