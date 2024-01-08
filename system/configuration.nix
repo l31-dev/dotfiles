@@ -1,66 +1,36 @@
 { pkgs, inputs, ... }: {
-
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "trail" ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
-
-  # enable docker
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "username-with-access-to-socket" ];
-
-  hardware.opengl = {
+  boot.loader.grub = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
+    device = "/dev/sda";
+    useOSProber = true;
   };
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
-
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "Europe/Paris";
 
-  i18n.defaultLocale = "fr_FR.UTF-8";
+  i18n = {
+    defaultLocale = "fr_FR.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
+  }
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     layout = "fr";
     xkbVariant = "";
   };
@@ -72,7 +42,7 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -80,16 +50,16 @@
     pulse.enable = true;
   };
 
-  users.users.trail = {
+  users.users.l31 = {
     isNormalUser = true;
-    description = "trail";
+    description = "l31";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "trail" = import ../home;
+      "l31" = import ../home;
     };
   };
 
@@ -97,10 +67,13 @@
 
   environment.systemPackages = with pkgs; [
     curl
-    man-pages
-    man-pages-posix
-    xorg.libxcvt
+    neovim
+    firefox
+    kitty
   ];
+
+  programs.nano.enable = false
+  services.xserver.desktopManager.xterm.enable = false;
 
   system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
